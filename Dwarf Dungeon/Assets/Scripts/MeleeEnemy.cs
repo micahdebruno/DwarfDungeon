@@ -12,6 +12,7 @@ public class MeleeEnemy : MonoBehaviour
     private float attackTime;
     [SerializeField]
     private GameObject player;
+    private Level1Manager levelManager;
     public bool player1;
     // Start is called before the first frame update
     void Start()
@@ -24,6 +25,7 @@ public class MeleeEnemy : MonoBehaviour
         {
             player = GameObject.FindGameObjectWithTag("Player2");
         }
+        levelManager = GameObject.FindObjectOfType<Level1Manager>();
     }
 
     // Update is called once per frame
@@ -64,6 +66,7 @@ public class MeleeEnemy : MonoBehaviour
     {
         if(col.tag == "Weapon")
         {
+            levelManager.enemiesLeft--;
             Destroy(this.gameObject);
         }
     }

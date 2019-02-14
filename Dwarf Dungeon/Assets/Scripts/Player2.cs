@@ -7,7 +7,7 @@ public class Player2 : MonoBehaviour
     public float speed;
     public int health;
     public int playerDirection;
-
+    public bool hasKey = false;
     [SerializeField]
     private GameObject weaponPrefab;
     // Start is called before the first frame update
@@ -71,6 +71,13 @@ public class Player2 : MonoBehaviour
             weaponPrefab.transform.Rotate(0, 0, 90);
             Vector3 weaponPos = new Vector3(transform.position.x - 1, transform.position.y, transform.position.z);
             Instantiate(weaponPrefab, weaponPos, weaponPrefab.transform.rotation);
+        }
+    }
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.tag == "Button")
+        {
+            hasKey = true;
         }
     }
 }

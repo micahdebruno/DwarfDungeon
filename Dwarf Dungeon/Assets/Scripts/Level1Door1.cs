@@ -23,7 +23,7 @@ public class Level1Door1 : MonoBehaviour
     {
         if (col.tag == "Player2")
         {
-            if(key.GetComponent<Level1Key>().p2 == true && Input.GetMouseButtonDown(1))
+            if(col.GetComponent<Player2>().hasKey == true && Input.GetMouseButtonDown(1))
             {
                 Destroy(this.gameObject);
             }

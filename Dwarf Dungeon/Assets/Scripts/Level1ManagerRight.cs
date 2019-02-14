@@ -2,45 +2,41 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Level1Manager : MonoBehaviour
+public class Level1ManagerRight : MonoBehaviour
 {
     public GameObject enemyPrefab;
     public GameObject keyPrefab;
-    public Transform keySpawnPoint;
+    //public Transform keySpawnPoint;
     public int numEnemies;
     public Transform[] spawnPoints;
     private bool activated = false;
-    private bool disabled = false;
     public int enemiesLeft;
-    //List<GameObject> listOfOpponents = new List<GameObject>();
     // Start is called before the first frame update
     void Start()
     {
-        enemiesLeft = numEnemies;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         Debug.Log(enemiesLeft);
-        if (activated && enemiesLeft == 0 && !disabled)
+        if (activated && enemiesLeft == 0)
         {
-            Instantiate(keyPrefab, keySpawnPoint.position, keySpawnPoint.rotation);
-            disabled = true;
-            //Destroy(this.gameObject);
+            
+            Destroy(this.gameObject);
         }
     }
     void OnTriggerEnter2D(Collider2D col)
     {
-        if((col.tag == "Player" || col.tag == "Player2") && !activated)
+        if ((col.tag == "Player" || col.tag == "Player2") && !activated)
         {
             activated = true;
-            for(int i = 0; i < numEnemies; i++)
+            for (int i = 0; i < numEnemies; i++)
             {
                 Instantiate(enemyPrefab, spawnPoints[i].position, spawnPoints[i].rotation);
             }
-            //listOfOpponents.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
-            //Destroy(this.gameObject, .1f);
+            
         }
     }
 }
