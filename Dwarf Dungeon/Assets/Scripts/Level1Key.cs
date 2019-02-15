@@ -25,6 +25,7 @@ public class Level1Key : MonoBehaviour
         {
             pickedUp = true;
             this.GetComponent<SpriteRenderer>().enabled = false;
+            col.GetComponent<Player1>().numKeys++;
         }
     }
 }

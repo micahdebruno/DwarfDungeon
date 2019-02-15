@@ -7,9 +7,12 @@ public class Player2 : MonoBehaviour
     public float speed;
     public int health;
     public int playerDirection;
-    public bool hasKey = false;
+    
     [SerializeField]
     private GameObject weaponPrefab;
+    public int numKeys;
+    public Vector3 respawnPoint;
+    public bool isSafe = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -75,9 +78,28 @@ public class Player2 : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.tag == "Button")
+        if (col.tag == "RespawnPoint")
         {
-            hasKey = true;
+            respawnPoint = this.transform.position;
         }
+        if (col.tag == "Platform")
+        {
+            isSafe = true;
+        }
+        if (col.tag == "Hazard" && !isSafe)
+        {
+            Respawn();
+        }
+    }
+    void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.tag == "Platform")
+        {
+            isSafe = false;
+        }
+    }
+    void Respawn()
+    {
+        transform.position = respawnPoint;
     }
 }

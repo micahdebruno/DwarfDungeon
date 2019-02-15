@@ -6,6 +6,7 @@ public class ButtonSlide : MonoBehaviour
 {
     private GameObject player, player2;
     private GameObject key;
+    private bool hasKey = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,27 +21,24 @@ public class ButtonSlide : MonoBehaviour
     }
     void OnTriggerStay2D(Collider2D col)
     {
-        if(col.tag == "Player")
+        if(col.tag == "Player" && col.GetComponent<Player1>().numKeys > 0)
         {
-            key = GameObject.FindGameObjectWithTag("Key");
-            if(key.GetComponent<Level1Key>().pickedUp == true)
+            if (Input.GetKey(KeyCode.E))
             {
-                if (Input.GetKey(KeyCode.E))
-                {
-                    Debug.Log("Key Inserted");
-                    MoveButton();
-                }
+                Debug.Log("Key Inserted");
+                col.GetComponent<Player1>().numKeys--;
+                MoveButton();
             }
         }
         if(col.tag == "Player2")
         {
-            key.GetComponent<Level1Key>().p2 = true;
+            col.GetComponent<Player2>().numKeys++;
             Debug.Log("Player2 has the key");
         }
     }
     void MoveButton()
     {
-        Vector2 newPos = new Vector2(transform.position.x + 10, transform.position.y);
-        transform.position = Vector2.MoveTowards(transform.position, newPos, Time.deltaTime * .5f);
+        Vector2 newPos = new Vector2(transform.position.x + 2, transform.position.y);
+        transform.position = newPos;//Vector2.MoveTowards(transform.position, newPos, Time.deltaTime * .5f);
     }
 }
