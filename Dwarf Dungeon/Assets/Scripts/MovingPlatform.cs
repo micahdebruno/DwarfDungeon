@@ -8,7 +8,7 @@ public class MovingPlatform : MonoBehaviour
     private float speed = 10f;
     [SerializeField]
     private float ResetTime = 3f;
-    
+    public bool isActive = false;
     private float time;
     // Start is called before the first frame update
     void Start()
@@ -19,7 +19,8 @@ public class MovingPlatform : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        UpAndDown();
+        if (isActive)
+        { UpAndDown(); }
     }
     public void UpAndDown()
     {

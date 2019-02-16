@@ -99,6 +99,9 @@ MonoBehaviour:
   playerDirection: 0
   weaponPrefab: {fileID: 8589512731879728152, guid: ed716295d5ef26a499235f3b41c90821,
     type: 3}
+  numKeys: 0
+  respawnPoint: {x: 0, y: 0, z: 0}
+  isSafe: 0
 --- !u!58 &755460189311139026
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -133,6 +136,6 @@ Rigidbody2D:
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 0

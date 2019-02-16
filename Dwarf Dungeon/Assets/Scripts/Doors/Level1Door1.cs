@@ -21,12 +21,12 @@ public class Level1Door1 : MonoBehaviour
     }
     void OnTriggerStay2D(Collider2D col)
     {
-        if (col.tag == "Player2")
+        if (col.tag == "Player2" && col.GetComponent<Player2>().numKeys > 0 && Input.GetMouseButtonDown(1))
         {
-            if(col.GetComponent<Player2>().numKeys > 0 && Input.GetMouseButtonDown(1))
-            {
+            //if(col.GetComponent<Player2>().numKeys > 0 && Input.GetMouseButtonDown(1))
+            //{
                 Destroy(this.gameObject);
-            }
+            //}
         }
     }
 }

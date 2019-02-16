@@ -2,16 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Level1Key : MonoBehaviour
+public class Button2 : MonoBehaviour
 {
-    private GameObject player, player2;
-    public bool pickedUp = false;
-    public bool p1, p2 = false;
+    public Animator anim;
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-        player2 = GameObject.FindGameObjectWithTag("Player2");
+        
     }
 
     // Update is called once per frame
@@ -21,11 +18,13 @@ public class Level1Key : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D col)
     {
-        if(col.tag == "Player")
+        if(col.tag == "Weapon")
         {
-            pickedUp = true;
+            Debug.Log("Arrow hit button");
             this.GetComponent<SpriteRenderer>().enabled = false;
-            col.GetComponent<Player1>().numKeys++;
+            anim.SetTrigger("Extend");
+            anim.SetBool("Extended", true);
+            Destroy(this.gameObject, 7f);
         }
     }
 }
