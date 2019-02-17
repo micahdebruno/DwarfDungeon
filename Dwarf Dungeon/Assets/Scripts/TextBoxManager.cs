@@ -8,7 +8,7 @@ public class TextBoxManager : MonoBehaviour
     private GameObject player1, player2;
     public Canvas canvas1, canvas2;
     public Text text;
-    public string[] textLines = { "You Picked Up A Key", "You Now Have A Key", "This Door Is Blocked From The Other Side","You Need A Key To Open This Door","Right Click To Unlock The Door" };
+    public string[] textLines = { "You Picked Up A Key", "You Now Have A Key", "This Door Is Blocked From The Other Side","You Need A Key To Open This Door","Right Click To Unlock The Door", "Press 'E' To Insert The Key" };
     private float displayTime = 0;
     private bool displayed = false;
     // Start is called before the first frame update
@@ -38,18 +38,18 @@ public class TextBoxManager : MonoBehaviour
         displayTime -= Time.deltaTime;
         
     }
-    void OnTriggerStay2D(Collider2D col)
+    void OnTriggerEnter2D(Collider2D col)
     {
         if(col.tag == "Player")
         {
-            canvas1.enabled = true;
             displayTime = 2f;
+            canvas1.enabled = true;  
             text.text = textLines[2];
         }
         if(col.tag == "Player2" && col.GetComponent<Player2>().numKeys < 1)
         {
-            canvas2.enabled = true;
             displayTime = 2f;
+            canvas2.enabled = true;
             text.text = textLines[3];
         }
         if (col.tag == "Player2" && col.GetComponent<Player2>().numKeys >= 1)
@@ -57,6 +57,15 @@ public class TextBoxManager : MonoBehaviour
             canvas2.enabled = true;
             displayTime = 2f;
             text.text = textLines[4];
+        }
+    }
+    void OnTriggerStay2D(Collider2D col)
+    {
+        if (col.tag == "Player")
+        {
+            displayTime = 2f;
+            canvas1.enabled = true;
+            text.text = textLines[2];
         }
     }
     void OnTriggerExit2D(Collider2D col)

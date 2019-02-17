@@ -64,7 +64,7 @@ public class MeleeEnemy : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D col)
     {
-        if(col.tag == "Weapon")
+        if(col.tag == "Weapon" || col.tag == "Weapon2")
         {
             levelManager.enemiesLeft--;
             Destroy(this.gameObject);

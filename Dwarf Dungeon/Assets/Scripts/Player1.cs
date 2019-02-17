@@ -13,16 +13,19 @@ public class Player1 : MonoBehaviour
     public int numKeys;
     public Vector3 respawnPoint;
     public bool isSafe = false;
+    [SerializeField]
+    private Animator anim;
     // Start is called before the first frame update
     void Start()
     {
+        anim = GetComponent<Animator>();
         playerDirection = 1;
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        
         if (Input.GetKey(KeyCode.W))
         {
             transform.Translate(Vector2.up * speed * Time.deltaTime);
@@ -50,7 +53,9 @@ public class Player1 : MonoBehaviour
     }
     void Attack()
     {
-        if (playerDirection == 1)
+        anim.SetBool("isAttacking", true);
+        speed = 0f;
+        /*if (playerDirection == 1)
         {
             weaponPrefab.transform.rotation = new Quaternion(0, 0, 0, 0);
             Vector3 weaponPos = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
@@ -76,8 +81,8 @@ public class Player1 : MonoBehaviour
             weaponPrefab.transform.Rotate(0, 0, 90);
             Vector3 weaponPos = new Vector3(transform.position.x - 1, transform.position.y, transform.position.z);
             Instantiate(weaponPrefab, weaponPos, weaponPrefab.transform.rotation);
-        }
-
+        }*/
+        
     }
     void OnTriggerEnter2D(Collider2D col)
     {
@@ -104,5 +109,10 @@ public class Player1 : MonoBehaviour
     void Respawn()
     {
         transform.position = respawnPoint;
+    }
+    public void AttackResetBool()
+    {
+        anim.SetBool("isAttacking", false);
+        speed = 5f;
     }
 }

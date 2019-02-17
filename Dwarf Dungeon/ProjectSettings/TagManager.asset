@@ -13,6 +13,7 @@ TagManager:
   - Hazard
   - RespawnPoint
   - Platform
+  - Weapon2
   layers:
   - Default
   - TransparentFX

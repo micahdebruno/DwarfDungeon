@@ -18,9 +18,9 @@ public class Button2 : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D col)
     {
-        if(col.tag == "Weapon")
+        if(col.tag == "Weapon2")
         {
-            Debug.Log("Arrow hit button");
+            Debug.Log("Hammer hit button");
             this.GetComponent<SpriteRenderer>().enabled = false;
             anim.SetTrigger("Extend");
             anim.SetBool("Extended", true);

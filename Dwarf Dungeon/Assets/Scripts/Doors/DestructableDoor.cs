@@ -17,7 +17,8 @@ public class DestructableDoor : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D col)
     {
-        if(col.tag == "Weapon")
+        Debug.Log("Being collided with");
+        if(col.tag == "Weapon2")
         {
             Destroy(this.gameObject);
         }

@@ -97,7 +97,7 @@ MonoBehaviour:
   speed: 5
   health: 10
   playerDirection: 0
-  weaponPrefab: {fileID: 8589512731879728152, guid: ed716295d5ef26a499235f3b41c90821,
+  weaponPrefab: {fileID: 5928359836070119617, guid: 14cc2d064731dda4bbee3afb61bce9f1,
     type: 3}
   numKeys: 0
   respawnPoint: {x: 0, y: 0, z: 0}
