@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 755460189311139027}
   - component: {fileID: 755460189311139026}
   - component: {fileID: 755460189311139025}
+  - component: {fileID: 7057982901166558178}
   m_Layer: 0
   m_Name: Player2
   m_TagString: Player2
@@ -97,6 +98,7 @@ MonoBehaviour:
   speed: 5
   health: 10
   playerDirection: 0
+  hasKey: 0
   weaponPrefab: {fileID: 8589512731879728152, guid: ed716295d5ef26a499235f3b41c90821,
     type: 3}
 --- !u!58 &755460189311139026
@@ -136,3 +138,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!95 &7057982901166558178
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 755460189311139054}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5cddd5662557744d19375bf077adf2d7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
