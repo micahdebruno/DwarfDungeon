@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Level1Manager : MonoBehaviour
 {
-    public GameObject enemyPrefab;
-    public GameObject keyPrefab;
-    public Transform keySpawnPoint;
+    public GameObject enemyPrefab, bigEnemyPrefab;
+    //public GameObject keyPrefab;
+    //public Transform keySpawnPoint;
+    
     public int numEnemies;
     public Transform[] spawnPoints;
     private bool activated = false;
@@ -25,7 +26,7 @@ public class Level1Manager : MonoBehaviour
         Debug.Log(enemiesLeft);
         if (activated && enemiesLeft == 0 && !disabled)
         {
-            Instantiate(keyPrefab, keySpawnPoint.position, keySpawnPoint.rotation);
+            //Instantiate(keyPrefab, keySpawnPoint.position, keySpawnPoint.rotation);
             disabled = true;
             //Destroy(this.gameObject);
         }
@@ -37,8 +38,16 @@ public class Level1Manager : MonoBehaviour
             activated = true;
             for(int i = 0; i < numEnemies; i++)
             {
-                Instantiate(enemyPrefab, spawnPoints[i].position, spawnPoints[i].rotation);
+                if (i != numEnemies-1)
+                {
+                    Instantiate(enemyPrefab, spawnPoints[i].position, spawnPoints[i].rotation);
+                }
+                else
+                {
+                    Instantiate(bigEnemyPrefab, spawnPoints[0].position, spawnPoints[0].rotation);
+                }
             }
+            
             //listOfOpponents.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
             //Destroy(this.gameObject, .1f);
         }

@@ -66,7 +66,7 @@ public class MeleeEnemy : MonoBehaviour
     {
         if(col.tag == "Weapon" || col.tag == "Weapon2")
         {
-            levelManager.enemiesLeft--;
+            //levelManager.enemiesLeft--;
             Destroy(this.gameObject);
         }
     }

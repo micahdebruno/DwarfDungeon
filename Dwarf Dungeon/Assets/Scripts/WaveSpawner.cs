@@ -14,7 +14,9 @@ public class WaveSpawner : MonoBehaviour
     public Wave[] waves;
     public Transform[] spawnPoints;
     public float timeBetweenWaves;
+    public GameObject wallPrefab;
 
+    private bool p1, p2 = false;
     private bool finishedSpawn;
     private Wave currentWave;
     private int currentWaveIndex;
@@ -27,31 +29,49 @@ public class WaveSpawner : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        StartCoroutine(StartNextWave(currentWaveIndex));
+        //StartCoroutine(StartNextWave(currentWaveIndex));
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("objects with enemy tag: " + GameObject.FindGameObjectsWithTag("Enemy").Length);
-        if (finishedSpawn == true && GameObject.FindGameObjectsWithTag("Enemy").Length <= 1)
+        if (p1 && p2)
         {
-            finishedSpawn = false;
-            if (currentWaveIndex + 1 < waves.Length)
+            StartCoroutine(StartNextWave(currentWaveIndex));
+            Debug.Log("objects with enemy tag: " + GameObject.FindGameObjectsWithTag("Enemy").Length);
+            if (finishedSpawn == true && GameObject.FindGameObjectsWithTag("Enemy").Length <= 1)
             {
-                currentWaveIndex++;
-                StartCoroutine(StartNextWave(currentWaveIndex));
+                finishedSpawn = false;
+                if (currentWaveIndex + 1 < waves.Length)
+                {
+                    currentWaveIndex++;
+                    StartCoroutine(StartNextWave(currentWaveIndex));
+                }
+                else
+                {
+                    //Instantiate(boss, bossSpawnPoint.position, bossSpawnPoint.rotation);
+                    //healthBar.SetActive(true);
+                }
             }
-            else
-            {
-                //Instantiate(boss, bossSpawnPoint.position, bossSpawnPoint.rotation);
-                //healthBar.SetActive(true);
-            }
+        }
+    }
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if(col.tag == "Player")
+        {
+            p1 = true;
+        }
+        if (col.tag == "Player2")
+        {
+            p2 = true;
         }
     }
     IEnumerator StartNextWave(int index)
     {
+        p1 = false;
+        p2 = false;
         yield return new WaitForSeconds(timeBetweenWaves);
+        Instantiate(wallPrefab, transform.position, transform.rotation);
         StartCoroutine(SpawnWave(index));
     }
     IEnumerator SpawnWave(int index)
