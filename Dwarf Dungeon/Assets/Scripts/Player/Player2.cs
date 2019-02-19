@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player1 : MonoBehaviour
+public class Player2 : MonoBehaviour
 {
     public float speed;
     public int health;
-    public float weaponCD = 0.2f;
     public int playerDirection;
+    
     [SerializeField]
     private GameObject weaponPrefab;
+    public int numKeys;
+    public Vector3 respawnPoint;
+    public bool isSafe = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,27 +22,27 @@ public class Player1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.UpArrow))
         {
-            transform.Translate(Vector2.up * speed * Time.deltaTime);
+            transform.Translate(Vector3.up * speed * Time.deltaTime);
             playerDirection = 1;
         }
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.LeftArrow))
         {
             transform.Translate(Vector2.left * speed * Time.deltaTime);
             playerDirection = 4;
         }
-        if (Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.DownArrow))
         {
             transform.Translate(Vector2.down * speed * Time.deltaTime);
             playerDirection = 3;
         }
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.RightArrow))
         {
             transform.Translate(Vector2.right * speed * Time.deltaTime);
             playerDirection = 2;
         }
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetMouseButtonDown(0))
         {
             Attack();
         }
@@ -52,13 +55,12 @@ public class Player1 : MonoBehaviour
             Vector3 weaponPos = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
             Instantiate(weaponPrefab, weaponPos, weaponPrefab.transform.rotation);
         }
-        if(playerDirection == 2)
+        if (playerDirection == 2)
         {
             weaponPrefab.transform.SetPositionAndRotation(transform.position, new Quaternion(0, 0, 0, 0));
             weaponPrefab.transform.Rotate(0, 0, -90);
             Vector3 weaponPos = new Vector3(transform.position.x + 1, transform.position.y, transform.position.z);
             Instantiate(weaponPrefab, weaponPos, weaponPrefab.transform.rotation);
-           
         }
         if (playerDirection == 3)
         {
@@ -71,10 +73,33 @@ public class Player1 : MonoBehaviour
             weaponPrefab.transform.SetPositionAndRotation(transform.position, new Quaternion(0, 0, 0, 0));
             weaponPrefab.transform.Rotate(0, 0, 90);
             Vector3 weaponPos = new Vector3(transform.position.x - 1, transform.position.y, transform.position.z);
-            Instantiate(weaponPrefab, weaponPos,weaponPrefab.transform.rotation);
+            Instantiate(weaponPrefab, weaponPos, weaponPrefab.transform.rotation);
         }
-        //weaponCD = .2f;
-        Debug.Log("Attacking");
-        //Destroy(weaponPrefab, weaponCD);
+    }
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.tag == "RespawnPoint")
+        {
+            respawnPoint = this.transform.position;
+        }
+        if (col.tag == "Platform")
+        {
+            isSafe = true;
+        }
+        if (col.tag == "Hazard" && !isSafe)
+        {
+            Respawn();
+        }
+    }
+    void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.tag == "Platform")
+        {
+            isSafe = false;
+        }
+    }
+    void Respawn()
+    {
+        transform.position = respawnPoint;
     }
 }

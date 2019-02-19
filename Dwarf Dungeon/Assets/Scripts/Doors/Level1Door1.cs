@@ -6,6 +6,10 @@ public class Level1Door1 : MonoBehaviour
 {
     private GameObject key;
     private GameObject player, player2;
+    [SerializeField]
+    private GameObject breakEffect;
+    [SerializeField]
+    private GameObject keyParticleEffect;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,12 +25,12 @@ public class Level1Door1 : MonoBehaviour
     }
     void OnTriggerStay2D(Collider2D col)
     {
-        if (col.tag == "Player2")
+        if (col.tag == "Player2" && col.GetComponent<Player2>().numKeys > 0 && Input.GetMouseButtonDown(1))
         {
-            if(col.GetComponent<Player2>().hasKey == true && Input.GetMouseButtonDown(1))
-            {
-                Destroy(this.gameObject);
-            }
+            Instantiate(keyParticleEffect, col.transform.position, col.transform.rotation);
+            Instantiate(breakEffect, transform.position, transform.rotation);
+            Destroy(this.gameObject);
+            
         }
     }
 }
