@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class DestructableDoor : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject breakEffect;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +20,6 @@ public class DestructableDoor : MonoBehaviour
         Debug.Log("Being collided with");
         if(col.tag == "Weapon2")
         {
-            Instantiate(breakEffect, transform.position, transform.rotation);
             Destroy(this.gameObject);
         }
     }

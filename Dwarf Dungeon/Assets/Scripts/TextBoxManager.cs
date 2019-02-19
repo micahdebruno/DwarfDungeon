@@ -9,7 +9,7 @@ public class TextBoxManager : MonoBehaviour
     public Canvas canvas1, canvas2;
     public Text text;
     public string[] textLines = { "You Picked Up A Key", "You Now Have A Key", "This Door Is Blocked From The Other Side","You Need A Key To Open This Door","Right Click To Unlock The Door", "Press 'E' To Insert The Key" };
-    public float displayTime = 0;
+    private float displayTime = 0;
     private bool displayed = false;
     // Start is called before the first frame update
     void Start()
@@ -30,7 +30,7 @@ public class TextBoxManager : MonoBehaviour
         if (player1.GetComponent<Player1>().numKeys > 0 && displayed == false)
         {
             displayed = true;
-            displayTime = 3f;
+            displayTime = 2f;
             canvas1.enabled = true;
             text.text = textLines[0];
         }
@@ -40,22 +40,22 @@ public class TextBoxManager : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D col)
     {
-        /*if(col.tag == "Player")
+        if(col.tag == "Player")
         {
-            displayTime = 3f;
+            displayTime = 2f;
             canvas1.enabled = true;  
             text.text = textLines[2];
-        }*/
+        }
         if(col.tag == "Player2" && col.GetComponent<Player2>().numKeys < 1)
         {
-            displayTime = 3f;
+            displayTime = 2f;
             canvas2.enabled = true;
             text.text = textLines[3];
         }
         if (col.tag == "Player2" && col.GetComponent<Player2>().numKeys >= 1)
         {
             canvas2.enabled = true;
-            displayTime = 3f;
+            displayTime = 2f;
             text.text = textLines[4];
         }
     }
@@ -63,17 +63,16 @@ public class TextBoxManager : MonoBehaviour
     {
         if (col.tag == "Player")
         {
-            displayTime = 3f;
+            displayTime = 2f;
             canvas1.enabled = true;
             text.text = textLines[2];
         }
-        
     }
     void OnTriggerExit2D(Collider2D col)
     {
         if (col.tag == "Player")
         {
-            //canvas1.enabled = false;
+            canvas1.enabled = false;
             
         }
         if (col.tag == "Player2")

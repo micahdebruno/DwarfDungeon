@@ -45,11 +45,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5272b1e1edbbdd1439fedbf3985c453a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canvas: {fileID: 3373854676733312392, guid: bb5436cf7fe3f3a409d6b5ac05fa369a, type: 3}
+  text: {fileID: 4464617222228596712, guid: a52283d3c2dec7545a2d9687fc422129, type: 3}
   pickedUp: 0
   p1: 0
   p2: 0
-  pickupEffect: {fileID: 4344927868937299176, guid: 5abb0f56095f14144bf026c6895b9232,
-    type: 3}
 --- !u!212 &8947312148031216501
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -14,8 +14,6 @@ TagManager:
   - RespawnPoint
   - Platform
   - Weapon2
-  - Canvas1
-  - Canvas2
   layers:
   - Default
   - TransparentFX

@@ -21,8 +21,8 @@ public class WaveSpawner : MonoBehaviour
     private Wave currentWave;
     private int currentWaveIndex;
     private Transform player;
-    public GameObject boss;
-    public Transform bossSpawnPoint;
+    //public GameObject boss;
+    //public Transform bossSpawnPoint;
     //public GameObject healthBar;
 
     // Use this for initialization
@@ -49,7 +49,7 @@ public class WaveSpawner : MonoBehaviour
                 }
                 else
                 {
-                    Instantiate(boss, bossSpawnPoint.position, bossSpawnPoint.rotation);
+                    //Instantiate(boss, bossSpawnPoint.position, bossSpawnPoint.rotation);
                     //healthBar.SetActive(true);
                 }
             }
