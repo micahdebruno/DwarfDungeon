@@ -7,8 +7,11 @@ public class ButtonSlide : MonoBehaviour
 {
     private GameObject player, player2;
     private GameObject key;
-    private bool hasKey = false;
     
+    private bool hasKey = false;
+    private bool effectPlayed = false;
+    [SerializeField]
+    private GameObject pickupEffect;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,8 +41,17 @@ public class ButtonSlide : MonoBehaviour
         if(col.tag == "Player2" && hasKey)
         {
             col.GetComponent<Player2>().numKeys++;
+            if (!effectPlayed)
+            {
+                effectPlayed = true;
+                Instantiate(pickupEffect, col.transform.position, col.transform.rotation);
+            }
             Debug.Log("Player2 has the key");
         }
+    }
+    void OnTrigerEnter2D(Collider2D col)
+    {
+        
     }
     void MoveButton()
     {

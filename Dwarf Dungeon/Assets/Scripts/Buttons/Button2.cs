@@ -5,6 +5,7 @@ using UnityEngine;
 public class Button2 : MonoBehaviour
 {
     public Animator anim;
+    public GameObject wallBreakParticle;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +22,7 @@ public class Button2 : MonoBehaviour
         if(col.tag == "Weapon2")
         {
             Debug.Log("Hammer hit button");
+            Instantiate(wallBreakParticle, col.transform.position, col.transform.rotation);
             this.GetComponent<SpriteRenderer>().enabled = false;
             anim.SetTrigger("Extend");
             anim.SetBool("Extended", true);

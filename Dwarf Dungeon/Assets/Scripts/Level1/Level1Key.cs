@@ -9,6 +9,8 @@ public class Level1Key : MonoBehaviour
     private GameObject player, player2;
     public bool pickedUp = false;
     public bool p1, p2 = false;
+    [SerializeField]
+    private GameObject pickupEffect;
     
     // Start is called before the first frame update
     void Start()
@@ -29,6 +31,7 @@ public class Level1Key : MonoBehaviour
         if(col.tag == "Player")
         {
             pickedUp = true;
+            Instantiate(pickupEffect, transform.position, transform.rotation);
             this.GetComponent<SpriteRenderer>().enabled = false;
             col.GetComponent<Player1>().numKeys++;
             
